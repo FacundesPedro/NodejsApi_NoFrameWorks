@@ -1,9 +1,3 @@
 [
-    {
-        "id":1,
-        "name": "Batman",
-        "power":"Trauma",
-        "strengh":"2",
-        "smart":"8"
-    }
+    {"id":"b9a9ae74-6357-4872-af24-01f37c28b538","name":"Batman","power":"Trauma","strengh":"2","smart":"8"}
 ]

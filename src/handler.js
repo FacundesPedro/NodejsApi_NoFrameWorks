@@ -1,9 +1,18 @@
-import { parse } from "node:url";
+import { parse,fileURLToPath } from "node:url";
+import { join, dirname } from 'node:path';
 import { DEFAULT_HEADER } from "./util/util.js";
 import { routes as heroRoutes } from "./routes/heroRoute.js";
+import { generateHeroService } from './factories/heroFactory.js'
+
+const dir = dirname( fileURLToPath(import.meta.url) );
+// console.log('directorie:', dir)
+const fileName = 'data.json';
+const filepath = join(dir,'./../db',fileName);
+
+const heroService = generateHeroService( filepath );
 
 const registeredRoutes = {
-  ...heroRoutes({}),
+  ...heroRoutes({ heroService }),
 
   default: (req, res) => {
     res.writeHead(404, DEFAULT_HEADER);
@@ -14,7 +23,7 @@ const registeredRoutes = {
 
 function errorHandler(res) {
   return (err) => {
-    console.log(`Um Erro Aconteceu!`, err);
+    console.log(`Um Erro Aconteceu!`, err); 
 
     res.writeHead(500, DEFAULT_HEADER);
     res.write(

@@ -40,7 +40,7 @@ test('Hero integration test suite',async (t) => {
             );
         
         assert.ok(
-            responseJson.id > 0,
+            responseJson.id.length > 15,
             'it should return a valid bigger than 0 id'
         )
 
